@@ -1,3 +1,3 @@
 #include <Geode/Geode.hpp>
 
-using namespace geode::prelude();
+using namespace geode::prelude;
