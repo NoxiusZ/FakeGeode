@@ -1,17 +1,159 @@
 {
-	"geode": "$GEODE_VERSION",
-	"gd": {
-		"win": "2.2081",
-		"android": "2.2081",
-		"mac": "2.2081",
-		"ios": "2.2081"
-	},
-	"id": "$MOD_ID",
-	"name": "$MOD_NAME",
-	"version": "$MOD_VERSION",
-	"developer": "$MOD_DEVELOPER",
-	"description": "$MOD_DESCRIPTION",
-	"dependencies": {
-		"geode.node-ids": ">=v1.23.3"
-	}
+    "geode": "5.8.2",
+    "gd": {
+        "win": "*",
+        "mac": "*",
+        "android": "*",
+        "ios": "*"
+    },
+    "id": "geode..loader",
+    "version": "5.8.2",
+    "name": "Geode",
+    "developer": "Geode Team",
+    "description": "The Geode mod loader",
+    "links": {
+        "community": "https://discord.com/invite/9e43WMKzhp",
+        "homepage": "https://geode-sdk.org",
+        "source": "https://github.com/geode-sdk/geode"
+    },
+    "settings": {
+        "geode-settings-info": {
+            "type": "info",
+            "description": "These are settings for the <co>Geode Mod Loader</c>, NOT for mods. To edit settings for <cj>mods</c>, press <cy>View</c> on the mod and then the settings button in the <cg>bottom left</c> of the popup."
+        },
+        "action-buttons": {
+            "type": "button",
+            "buttons": {
+                "open-mods-folder": "Open Mods Folder",
+                "copy-mods-list": "Copy Mods List",
+                "install-from-file": "Install From File"
+            }
+        },
+        "auto-check-updates": {
+            "type": "bool",
+            "default": true,
+            "name": "Check For Updates",
+            "description": "Automatically check for <cy>Geode</c> updates on startup"
+        },
+        "disable-last-crashed-popup": {
+            "type": "bool",
+            "default": false,
+            "name": "Disable Crash Popup",
+            "description": "Disables the popup at startup asking if you'd like to send a bug report; intended for developers"
+        },
+        "used-theme": {
+            "type": "string",
+            "name": "Used Theme",
+            "description": "The theme used for Geode menu. <cy>This does not affect any other menus!</c>",
+            "default": "Geode",
+            "one-of": [
+                "Geode",
+                "Geometry Dash",
+                "Rainbow",
+                "Sapphire"
+            ]
+        },
+        "infinite-local-mods-list": {
+            "type": "bool",
+            "default": false,
+            "name": "Expand Installed Mods List",
+            "description": "Make the installed mods list a single infinite scrollable list instead of having pages"
+        },
+        "developer-title": {
+            "type": "title",
+            "name": "Developer Settings"
+        },
+        "show-platform-console": {
+            "type": "bool",
+            "default": false,
+            "name": "Show Platform Console",
+            "description": "Show the native console (if one exists). <cr>This setting is meant for developers</c>",
+            "platforms": [
+                "win",
+                "mac"
+            ],
+            "requires-restart": true
+        },
+        "restart-button": {
+            "type": "bool",
+            "default": false,
+            "name": "Show Restart Button",
+            "description": "Show a button in the Geode Menu to restart the game"
+        },
+        "console-log-level": {
+            "type": "string",
+            "default": "info",
+            "name": "Console Log Level",
+            "description": "Sets the log level for the <cb>platform console</c>.",
+            "one-of": ["trace", "debug", "info", "warn", "error"]
+        },
+        "file-log-level": {
+            "type": "string",
+            "default": "debug",
+            "name": "File Log Level",
+            "description": "Sets the log level for the <cb>log files</c>.",
+            "one-of": ["trace", "debug", "info", "warn", "error"]
+        },
+        "log-retention-period": {
+            "type": "int",
+            "default": 30,
+            "min": 0,
+            "max": 365,
+            "name": "Log Retention Period",
+            "description": "The number of days to keep logs for. Logs older than this will be deleted every launch. 0 to disable deletion."
+        },
+        "log-milliseconds": {
+            "type": "bool",
+            "default": false,
+            "name": "Log Milliseconds",
+            "description": "Shows milliseconds in all logs"
+        },
+        "log-thread": {
+            "type": "bool",
+            "default": true,
+            "name": "Log Thread",
+            "description": "Pushes all logs to a worker thread that handles console & file writing. This makes logging much faster, especially on Windows, but if your console can't keep up, it will see stale logs and might miss some.",
+            "requires-restart": true
+        },
+        "verbose-curl-logs": {
+            "type": "bool",
+            "default": false,
+            "name": "Verbose Curl Logs",
+            "description": "When performing web requests, prints detailed information about the request immediately, as well as information when requests are added/removed. Otherwise, some information will only be printed on request failure."
+        },
+        "curl-dns3": {
+            "type": "string",
+            "name": "Web DNS Server",
+            "description": "Change the DNS server that Geode and mods will use to make web requests.",
+            "default": "Auto",
+            "one-of": [
+                "Auto",
+                "System",
+                "Cloudflare",
+                "Google",
+                "Cloudflare DoH"
+            ],
+            "requires-restart": true
+        },
+        "curl-custom-dns3": {
+            "type": "string",
+            "name": "Custom Web DNS Server(s)",
+            "description": "Manually specify DNS server IPs that Geode and mods will use to make web requests (separate each IP by a comma). This will override what you have set for Web DNS Server.",
+            "filter": "abcdefghijklmnopqrstuvwxyz0123456789.,[]:",
+            "default": "",
+            "requires-restart": true
+        },
+        "server-cache-size-limit": {
+            "type": "int",
+            "default": 20,
+            "min": 1,
+            "max": 100,
+            "name": "Server Cache Size Limit",
+            "description": "Limits the size of the cache used for loading mods. Higher values result in higher memory usage."
+        }
+    },
+    "issues": {
+        "info": "Post your issues on the <cp>Geode Github Repository</c>. <cy>Please follow the standard issue format</c>.",
+        "url": "https://github.com/geode-sdk/geode/issues/new"
+    }
 }
